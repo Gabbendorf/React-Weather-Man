@@ -10,9 +10,17 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
+  "jest": {
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "author": "Gabriella Medas",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
@@ -29,5 +37,8 @@
     "webpack": "^4.2.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^2.0.3"
   }
 }

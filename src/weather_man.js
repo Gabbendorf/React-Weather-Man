@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'whatwg-fetch'
 const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const APIKey = '&APPID=81ebd306a97bf6e5342257562b958514';
 
