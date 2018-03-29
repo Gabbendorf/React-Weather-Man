@@ -12,7 +12,7 @@ class WeatherMan extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     getDataFor(this.props.city)
       .then(data => {
 	this.setState({
