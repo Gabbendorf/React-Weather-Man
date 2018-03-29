@@ -1,24 +1,29 @@
 import React from 'react';
 import fetchMock from 'fetch-mock';
 import { WeatherMan } from '../src/weather_man';
+import { flushPromises } from '../src/api';
 
-export const dataForPadovaPromised = {
-  city: "Padua",
-  weather: "sunny"
-}
+let weatherMan
+
+beforeEach(() => {
+  fetch.mockResponse(JSON.stringify({name: "Padua", weather: [{description: "sunny"}]}), {status: 200});
+  weatherMan = mount(<WeatherMan />);
+});
 
 test('renders without crashing', () => {
-  mount(<WeatherMan city="London"/>);
+  mount(<WeatherMan />);
 })
 
-test('checks API is called', () => {
-  const weatherMan = new WeatherMan();
-  fetchMock.get("*", dataForPadovaPromised);
+test('renders a heading with hardcoded state values for city and weather without API call', () => {
+  weatherMan.setState({city: "Padua", weather: "sunny"})
 
-  weatherMan.getDataFor("padova")
-    .then(dataForPadovaReceived => {
-      expect(dataForPadovaReceived).toEqual(dataForPadovaPromised);
-    });
+  const h1 = weatherMan.find("h1");
 
-  fetchMock.restore();
+  expect(h1.text()).toEqual("The weather in Padua today is: sunny");
+})
+
+test('renders a heading for the weather of Padua after getting data from API', () => {
+  return flushPromises().then(() => {
+    expect(weatherMan.find("h1").text()).toEqual("The weather in Padua today is: sunny");
+  });
 })

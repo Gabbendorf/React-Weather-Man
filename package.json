@@ -11,6 +11,7 @@
     "test:coverage": "jest --coverage"
   },
   "jest": {
+    "automock": false,
     "setupFiles": [
       "./test/jestsetup.js"
     ],
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "fetch-mock": "^6.3.0",
+    "jest-fetch-mock": "^1.5.0",
     "whatwg-fetch": "^2.0.3"
   }
 }

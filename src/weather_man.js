@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'whatwg-fetch';
-const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
-const APIKey = '&APPID=81ebd306a97bf6e5342257562b958514';
+import { getDataFor } from './api';
 
 class WeatherMan extends React.Component {
 
@@ -14,16 +12,8 @@ class WeatherMan extends React.Component {
     }
   }
 
-  getDataFor(city) {
-    const url = rootUrl + city + APIKey;
-    return fetch(url)
-      .then(response => {
-	return response.json();
-      });
-  }
-
   componentWillMount() {
-    this.getDataFor(this.props.city)
+    getDataFor(this.props.city)
       .then(data => {
 	this.setState({
 	  city: data.name,
@@ -34,12 +24,9 @@ class WeatherMan extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>The weather in {this.state.city} today is: {this.state.weather}</h1>
-      </div>
+      <h1>The weather in {this.state.city} today is: {this.state.weather}</h1>
     );
   }
 };
-
 
 export { WeatherMan }
