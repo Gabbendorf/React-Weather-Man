@@ -9,22 +9,45 @@ class WeatherMan extends React.Component {
     this.state = {
       city: "",
       weather: "",
+      message: "",
     }
+    this.registerCity = this.registerCity.bind(this);
+    this.updateMessage = this.updateMessage.bind(this);
   }
 
-  componentDidMount() {
-    getDataFor(this.props.city)
+  registerCity(event) {
+    this.setState({
+      city: event.target.value,
+    })
+  }
+
+  registerData() {
+    getDataFor(this.state.city)
       .then(data => {
 	this.setState({
 	  city: data.name,
 	  weather: data.weather[0].description,
-	});
+	})
       });
+  }
+
+  updateMessage() {
+    this.registerData();
+    this.setState({
+      message: "The weather in " + this.state.city + " now is: " + this.state.weather
+    })
   }
 
   render() {
     return (
-      <h1>The weather in {this.state.city} today is: {this.state.weather}</h1>
+      <div>
+        <label>
+          <h1>How is the weather now in:</h1>
+          <input type="text" value={this.state.city} onChange={this.registerCity} autoFocus="autofocus" />
+        </label>
+        <button onClick={this.updateMessage}>Submit</button>
+        <p>{this.state.message}</p>
+      </div>
     );
   }
 };
