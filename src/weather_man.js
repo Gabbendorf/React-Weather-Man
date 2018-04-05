@@ -23,8 +23,8 @@ class WeatherMan extends React.Component {
   updateWeatherForecast() {
     getDataFor(this.state.city)
       .then(data => {
-	this.setState({
-	  weatherForecast: "The weather in " + this.state.city + " now is: " + data.weather[0].description.toUpperCase(),
+ 	this.setState({
+	  weatherForecast: `The weather in ${this.state.city} now is: ${data.weather[0].description.toUpperCase()}`,
 	})
       })
   }
