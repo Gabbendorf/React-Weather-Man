@@ -18,13 +18,19 @@ test('renders without crashing', () => {
 test('renders a heading', () => {
   const heading = weatherMan.find('h1');
 
-  expect(heading.text()).toEqual("How is the weather now in:");
+  expect(heading.text()).toEqual("How is the weather now in");
 })
 
-test('renders a Submit button', () => {
-  const button = weatherMan.find('button');
+test('renders an empty cityChosen input element at beginning', () => {
+  const input = weatherMan.find('.cityChosen');
 
-  expect(button.text()).toEqual("Submit");
+  expect(input.props().value).toEqual("");
+})
+
+test('renders a Submit input element', () => {
+  const input = weatherMan.find('.submitInput');
+
+  expect(input.props().value).toEqual("Submit");
 })
 
 test('renders an empty paragraph for weather forecast at beginning', () => {
@@ -40,18 +46,18 @@ test('responds to city change', () => {
   )
 
   const event = {target: {value: "London"}};
-  weatherMan.find('input').simulate('change', event);
+  weatherMan.find('.cityChosen').simulate('change', event);
 
   expect(registerCitySpy.called).toEqual(true);
 })
 
 test('gets data for a certain city from API and renders a paragraph with updated weather forecast', async () => {
     const event = {target: {value: "Padua"}};
-    weatherMan.find('input').simulate('change', event);
-    weatherMan.find('button').simulate('click');
+    weatherMan.find('.cityChosen').simulate('change', event);
+    weatherMan.find('.submitInput').simulate('submit');
     await flushPromises();
 
     const weatherForecast = weatherMan.find('p');
 
-    expect(weatherForecast.text()).toEqual("The weather in Padua now is: SUNNY");
+    expect(weatherForecast.text()).toEqual("The weather in Padua now is: sunny");
 })
