@@ -21,7 +21,8 @@ class WeatherMan extends React.Component {
     })
   }
 
-  registerData() {
+  registerData(event) {
+    event.preventDefault();
     getDataFor(this.state.cityChosen)
       .then(data => {
  	this.setState({
@@ -41,13 +42,17 @@ class WeatherMan extends React.Component {
   render() {
     return (
       <div>
-        <h1>How is the weather now in:</h1>
-        <input type="text" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
-        <button onClick={this.registerData}>Submit</button>
-        <p>{this.weatherForecast()}</p>
+	<form onSubmit={this.registerData}>
+	  <label>
+	    <h1>How is the weather now in</h1>
+	    <input className="cityChosen" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
+	  </label>
+	  <input className="submitInput" type="submit" value="Submit" />
+	</form>
+	<p>{this.weatherForecast()}</p>
       </div>
     );
   }
-};
+}
 
 export { WeatherMan }
