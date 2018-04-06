@@ -1,5 +1,5 @@
 # Weather Man App
-An application in JavaScript and React that connects to an external API and displays the current weather for the city of Padova, Italy.
+An application in JavaScript and React that connects to an external API and displays the current weather for a city.
 
 ## To run it you need to install npm:
 ```
