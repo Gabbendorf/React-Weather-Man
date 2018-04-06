@@ -53,5 +53,5 @@ test('gets data for a certain city from API and renders a paragraph with updated
 
     const weatherForecast = weatherMan.find('p');
 
-    expect(weatherForecast.text()).toEqual("The weather in Padua now is: SUNNY");
+    expect(weatherForecast.text()).toEqual("The weather in Padua now is: sunny");
 })
