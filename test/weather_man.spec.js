@@ -1,6 +1,7 @@
 import React from 'react';
 import fetchMock from 'fetch-mock';
 import { WeatherMan } from '../src/weather_man';
+import  sinon  from 'sinon';
 import { flushPromises } from '../src/api';
 
 let weatherMan
@@ -14,16 +15,43 @@ test('renders without crashing', () => {
   mount(<WeatherMan />);
 })
 
-test('renders a heading with hardcoded state values for city and weather without API call', () => {
-  weatherMan.setState({city: "Padua", weather: "sunny"})
+test('renders a heading', () => {
+  const heading = weatherMan.find('h1');
 
-  const h1 = weatherMan.find("h1");
-
-  expect(h1.text()).toEqual("The weather in Padua today is: sunny");
+  expect(heading.text()).toEqual("How is the weather now in:");
 })
 
-test('renders a heading for the weather of Padua after getting data from API', () => {
-  return flushPromises().then(() => {
-    expect(weatherMan.find("h1").text()).toEqual("The weather in Padua today is: sunny");
-  });
+test('renders a Submit button', () => {
+  const button = weatherMan.find('button');
+
+  expect(button.text()).toEqual("Submit");
+})
+
+test('renders an empty paragraph for weather forecast at beginning', () => {
+  const weatherForecast = weatherMan.find('p');
+
+  expect(weatherForecast.text()).toEqual("");
+})
+
+test('responds to city change', () => {
+  const registerCitySpy = sinon.spy(WeatherMan.prototype, "registerCity");
+  const weatherMan = mount(
+    <WeatherMan />
+  )
+
+  const event = {target: {value: "London"}};
+  weatherMan.find('input').simulate('change', event);
+
+  expect(registerCitySpy.called).toEqual(true);
+})
+
+test('gets data for a certain city from API and renders a paragraph with updated weather forecast', async () => {
+    const event = {target: {value: "Padua"}};
+    weatherMan.find('input').simulate('change', event);
+    weatherMan.find('button').simulate('click');
+    await flushPromises();
+
+    const weatherForecast = weatherMan.find('p');
+
+    expect(weatherForecast.text()).toEqual("The weather in Padua now is: SUNNY");
 })
