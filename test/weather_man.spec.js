@@ -18,19 +18,19 @@ test('renders without crashing', () => {
 test('renders a heading', () => {
   const heading = weatherMan.find('h1');
 
-  expect(heading.text()).toEqual("How is the weather now in");
+  expect(heading.text()).toEqual("Weather Man");
 })
 
-test('renders an empty cityChosen input element at beginning', () => {
-  const input = weatherMan.find('.cityChosen');
+test('renders an input element where to search for a city and has an empty value at beginning', () => {
+  const input = weatherMan.find('.researchCity');
 
   expect(input.props().value).toEqual("");
 })
 
-test('renders a Submit input element', () => {
-  const input = weatherMan.find('.submitInput');
+test('renders an input element that acts as an Add button', () => {
+  const input = weatherMan.find('.addCity');
 
-  expect(input.props().value).toEqual("Submit");
+  expect(input.props().value).toEqual("Add");
 })
 
 test('renders an empty paragraph for weather forecast at beginning', () => {
@@ -46,15 +46,15 @@ test('responds to city change', () => {
   )
 
   const event = {target: {value: "London"}};
-  weatherMan.find('.cityChosen').simulate('change', event);
+  weatherMan.find('.researchCity').simulate('change', event);
 
   expect(registerCitySpy.called).toEqual(true);
 })
 
 test('gets data for a certain city from API and renders a paragraph with updated weather forecast', async () => {
     const event = {target: {value: "Padua"}};
-    weatherMan.find('.cityChosen').simulate('change', event);
-    weatherMan.find('.submitInput').simulate('submit');
+    weatherMan.find('.researchCity').simulate('change', event);
+    weatherMan.find('.addCity').simulate('submit');
     await flushPromises();
 
     const weatherForecast = weatherMan.find('p');

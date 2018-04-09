@@ -44,10 +44,10 @@ class WeatherMan extends React.Component {
       <div>
 	<form onSubmit={this.registerData}>
 	  <label>
-	    <h1>How is the weather now in</h1>
-	    <input className="cityChosen" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
+	    <h1>Weather Man</h1>
+	    <input className="researchCity" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
 	  </label>
-	  <input className="submitInput" type="submit" value="Submit" />
+	  <input className="addCity" type="submit" value="Add" />
 	</form>
 	<p>{this.weatherForecast()}</p>
       </div>
