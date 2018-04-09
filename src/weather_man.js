@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getDataFor } from './api';
+import { City } from './components/city';
 
 class WeatherMan extends React.Component {
 
@@ -8,12 +8,10 @@ class WeatherMan extends React.Component {
     super(props)
     this.state = {
       cityChosen: "",
-      weather: "",
-      cityName: "",
-      temperature: "",
+      cities: "",
     }
     this.registerCity = this.registerCity.bind(this);
-    this.registerData = this.registerData.bind(this);
+    this.addCity = this.addCity.bind(this);
   }
 
   registerCity(event) {
@@ -22,33 +20,30 @@ class WeatherMan extends React.Component {
     })
   }
 
-  registerData(event) {
+  addCity(event) {
     event.preventDefault();
-    getDataFor(this.state.cityChosen)
-      .then(data => {
- 	this.setState({
-	  weather: data.weather[0].description,
-	  cityName: data.name,
-	  temperature: Math.floor(data.main.temp),
-	})
-      });
-  }
-
-  cityNameAndTemperature() {
-    return this.state.cityName + " " + this.state.temperature;
+    this.setState({
+      cities: this.state.cityChosen,
+    })
   }
 
   render() {
+    const cityDetails = this.state.cities != "" ? (
+      <City userChoice={this.state.cities} />
+    ) : (
+      <p></p>
+    );
+
     return (
       <div>
-	<form onSubmit={this.registerData}>
+	<form onSubmit={this.addCity}>
 	  <label>
 	    <h1>Weather Man</h1>
 	    <input className="researchCity" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
 	  </label>
 	  <input className="addCity" type="submit" value="Add" />
 	</form>
-	<p>{this.cityNameAndTemperature()}</p>
+        {cityDetails}
       </div>
     );
   }
