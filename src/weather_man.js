@@ -10,6 +10,7 @@ class WeatherMan extends React.Component {
       cityChosen: "",
       weather: "",
       cityName: "",
+      temperature: "",
     }
     this.registerCity = this.registerCity.bind(this);
     this.registerData = this.registerData.bind(this);
@@ -28,15 +29,13 @@ class WeatherMan extends React.Component {
  	this.setState({
 	  weather: data.weather[0].description,
 	  cityName: data.name,
+	  temperature: Math.floor(data.main.temp),
 	})
       });
   }
 
-  weatherForecast() {
-    if (this.state.weather != "") {
-      return `The weather in ${this.state.cityName} now is: ${this.state.weather}`;
-    }
-    return "";
+  cityNameAndTemperature() {
+    return this.state.cityName + " " + this.state.temperature;
   }
 
   render() {
@@ -49,7 +48,7 @@ class WeatherMan extends React.Component {
 	  </label>
 	  <input className="addCity" type="submit" value="Add" />
 	</form>
-	<p>{this.weatherForecast()}</p>
+	<p>{this.cityNameAndTemperature()}</p>
       </div>
     );
   }

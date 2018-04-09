@@ -5,9 +5,14 @@ import  sinon  from 'sinon';
 import { flushPromises } from '../src/api';
 
 let weatherMan
+const cityDataMocked = {
+  			name: 'Padua',
+  			weather: [ { description: 'sunny' } ],
+      			main: { temp: '8.5' },
+		       }
 
 beforeEach(() => {
-  fetch.mockResponse(JSON.stringify({name: "Padua", weather: [{description: "sunny"}]}), {status: 200});
+  fetch.mockResponse(JSON.stringify(cityDataMocked), {status: 200});
   weatherMan = mount(<WeatherMan />);
 });
 
@@ -36,7 +41,7 @@ test('renders an input element that acts as an Add button', () => {
 test('renders an empty paragraph for weather forecast at beginning', () => {
   const weatherForecast = weatherMan.find('p');
 
-  expect(weatherForecast.text()).toEqual("");
+  expect(weatherForecast.text()).toEqual(" ");
 })
 
 test('responds to city change', () => {
@@ -51,7 +56,7 @@ test('responds to city change', () => {
   expect(registerCitySpy.called).toEqual(true);
 })
 
-test('gets data for a certain city from API and renders a paragraph with updated weather forecast', async () => {
+test('gets data for a certain city from API and renders a paragraph with city name and its temperature without decimals', async () => {
     const event = {target: {value: "Padua"}};
     weatherMan.find('.researchCity').simulate('change', event);
     weatherMan.find('.addCity').simulate('submit');
@@ -59,5 +64,5 @@ test('gets data for a certain city from API and renders a paragraph with updated
 
     const weatherForecast = weatherMan.find('p');
 
-    expect(weatherForecast.text()).toEqual("The weather in Padua now is: sunny");
+    expect(weatherForecast.text()).toEqual("Padua 8");
 })
