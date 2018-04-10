@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { WeatherMan } from './components/weather_man';
+import WeatherMan from './components/weatherMan';
 
 ReactDOM.render(
   <WeatherMan />,
