@@ -8,7 +8,7 @@ class WeatherMan extends React.Component {
     super(props)
     this.state = {
       cityChosen: "",
-      cities: "",
+      cities: [],
     }
     this.registerCity = this.registerCity.bind(this);
     this.addCity = this.addCity.bind(this);
@@ -23,13 +23,13 @@ class WeatherMan extends React.Component {
   addCity(event) {
     event.preventDefault();
     this.setState({
-      cities: this.state.cityChosen,
+      cities: this.state.cities.concat(this.state.cityChosen),
     })
   }
 
   render() {
-    const cityDetails = this.state.cities != "" ? (
-      <City userChoice={this.state.cities} />
+    const cityDetails = this.state.cities.length > 0 ? (
+      <City userChoice={this.state.cities[0]} />
     ) : (
       <p></p>
     );
