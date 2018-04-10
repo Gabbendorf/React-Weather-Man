@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { getDataFor } from '../api'
 
-class City extends React.Component {
+export default class City extends React.Component {
 
   constructor(props) {
     super(props)
@@ -35,5 +35,3 @@ class City extends React.Component {
     );
   }
 }
-
-export { City }

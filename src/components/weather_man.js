@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { City } from './city';
+import City from './city';
 
-class WeatherMan extends React.Component {
+export default class WeatherMan extends React.Component {
 
   constructor(props) {
     super(props)
@@ -48,5 +48,3 @@ class WeatherMan extends React.Component {
     );
   }
 }
-
-export { WeatherMan }
