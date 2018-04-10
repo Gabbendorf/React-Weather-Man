@@ -15,7 +15,7 @@ class City extends React.Component {
   }
 
   registerData() {
-    getDataFor(this.props.addedCity)
+    getDataFor(this.props.userChoice)
       .then(data => {
 	this.setState({
 	  weather: data.weather[0].description,

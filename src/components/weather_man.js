@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { City } from './components/city';
+import { City } from './city';
 
 class WeatherMan extends React.Component {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import fetchMock from 'fetch-mock';
-import { WeatherMan } from '../src/weather_man';
+import { WeatherMan } from '../../src/components/weather_man';
 import  sinon  from 'sinon';
-import { flushPromises } from '../src/api';
+import { flushPromises } from '../../src/api';
 
 let weatherMan
 function cityDataMocked(apiName, apiWeather, apiTemp) {
