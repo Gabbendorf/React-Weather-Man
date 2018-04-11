@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getDataFor } from '../api'
+import { getDataFor } from '../api';
+import CitiesAdded from './citiesAdded';
 
 export default class WeatherMan extends React.Component {
 
@@ -36,12 +37,6 @@ export default class WeatherMan extends React.Component {
   }
 
   render() {
-    const cityDetails = this.state.citiesDetails.length > 0 ? (
-      <p>{this.state.citiesDetails[0].city.name} {this.state.citiesDetails[0].city.temperature}</p>
-    ) : (
-      <p></p>
-    );
-
     return (
       <div>
 	<form onSubmit={this.registerDetails}>
@@ -51,7 +46,7 @@ export default class WeatherMan extends React.Component {
 	  </label>
 	  <input className="addCity" type="submit" value="Add" />
 	</form>
-      {cityDetails}
+        <CitiesAdded citiesDetails={this.state.citiesDetails} />
       </div>
     );
   }
