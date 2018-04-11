@@ -1,10 +1,11 @@
 import 'whatwg-fetch';
 const rootUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
+const parameterForTemperatureInCelsius = "&units=metric";
 const APIKey = '&APPID=81ebd306a97bf6e5342257562b958514';
 
 module.exports = {
   getDataFor(city) {
-    const url = rootUrl + city + APIKey;
+    const url = rootUrl + city + parameterForTemperatureInCelsius + APIKey ;
     return fetch(url)
       .then(response => {
 	return response.json()
