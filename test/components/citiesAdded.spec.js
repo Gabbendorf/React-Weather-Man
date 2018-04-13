@@ -3,17 +3,30 @@ import CitiesAdded from '../../src/components/citiesAdded';
 
 let citiesAdded
 
-const citiesDetails = [{city: {
-  name: "Rome",
-  temperature: "8°",
-  weather: "sunny",
-}},
+const citiesDetails = [
+  {city: {
+    name: "Rome",
+    fiveDaysWeatherForecast: [
+      {
+	weekDay: "Monday",
+	description: "sunny",
+	temperature: "8°",
+      },
+    ]
+  }
+  },
   {city: {
     name: "Paris",
-    temperature: "2°",
-    weather: "cloudy",
-  }}
-]
+    fiveDaysWeatherForecast: [
+      {
+	weekDay: "Monday",
+	description: "rainy",
+	temperature: "3°",
+      },
+    ]
+  }
+  }
+];
 
 beforeEach(() => {
     citiesAdded = mount(<CitiesAdded citiesDetails={citiesDetails}/>);
@@ -35,5 +48,5 @@ test('renders unordered list of cities with their name and temperature', () => {
   const secondCityDetails = citiesAdded.find('.citiesAddedList').find('li').at(1);
 
   expect(firstCityDetails.text()).toEqual("Rome 8°");
-  expect(secondCityDetails.text()).toEqual("Paris 2°");
+  expect(secondCityDetails.text()).toEqual("Paris 3°");
 });

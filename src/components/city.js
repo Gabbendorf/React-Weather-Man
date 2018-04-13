@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Forecast from './forecast';
 
 export default class City extends React.Component {
 
@@ -7,6 +8,7 @@ export default class City extends React.Component {
     super(props)
     this.state = {
       clicked: false,
+      currentTemperature: props.weatherForecast[0].temperature,
     }
     this.registerClick = this.registerClick.bind(this);
   }
@@ -22,11 +24,9 @@ export default class City extends React.Component {
       <div className="fiveDaysDetails">
         <h2 className="cityName">{this.props.name}</h2>
         <h1 className="cityTemperature">
-          {this.props.temperature}
+          {this.state.currentTemperature}
         </h1>
-        <ul>
-          <li>Today {this.props.weather} {this.props.temperature}</li>
-        </ul>
+        <Forecast fiveDaysDetails={this.props.weatherForecast} />
       </div>
     );
   }
@@ -37,7 +37,7 @@ export default class City extends React.Component {
 	this.fiveDaysDetails()
       ) : (
 	<div className="onlyTodayDetails">
-	  {this.props.name} {this.props.temperature}
+  	  {this.props.name} {this.state.currentTemperature}
         </div>
       )
     );

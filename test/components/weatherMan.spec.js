@@ -8,12 +8,27 @@ let weatherMan
 
 function cityDataMocked(apiName, apiWeather, apiTemp) {
   let data = {
-    name: apiName,
-    weather: [ { description: apiWeather } ],
-    main: { temp: apiTemp },
+    city: {
+      name: apiName
+    },
+    list: fiveDaysWeatherForecast(apiWeather, apiTemp)
   }
   return data;
 };
+
+function fiveDaysWeatherForecast(apiWeather, apiTemp) {
+  let everySevenHoursForecast = [];
+  [...Array(29)].forEach((i) =>
+    everySevenHoursForecast.push(
+      {
+	weather: [ { description: apiWeather } ],
+	main: { temp: apiTemp },
+	dt: "today"
+      }
+    )
+  );
+  return everySevenHoursForecast;
+}
 
 function simulateActionOfAdding(cityChosen) {
   const event = {target: {value: cityChosen}};
@@ -66,7 +81,7 @@ test('renders an empty paragraph if no city has been added yet', () => {
   expect(citiesAddedDetails.text()).toEqual("");
 })
 
-test('gets data from API for a city chose$ and renders its name and temperature without decimals in an unordered list', async () => {
+test('gets data from API for a city chosen and renders its name and temperature without decimals in an unordered list', async () => {
   simulateActionOfAdding("Padua");
   await flushPromises();
 

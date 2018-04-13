@@ -17,7 +17,7 @@ export default class CitiesAdded extends React.Component {
       <p></p>
     ) : (
       this.props.citiesDetails.map( cityDetails =>
-	<City name={cityDetails.city.name} weather={cityDetails.city.weather} temperature={cityDetails.city.temperature} key={cityDetails.city.name} />
+	<City name={cityDetails.city.name} weatherForecast={cityDetails.city.fiveDaysWeatherForecast} key={cityDetails.city.name} />
       ));
 
     return (
