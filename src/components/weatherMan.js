@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { getDataFor } from '../api';
 import CitiesAdded from './citiesAdded';
+import moment from 'moment';
 
 export default class WeatherMan extends React.Component {
 
@@ -21,15 +22,26 @@ export default class WeatherMan extends React.Component {
     })
   }
 
+  fiveDays(data) {
+    const fiveDays = [0, 7, 14, 21, 28];
+    return fiveDays.map( (day) => {
+      return {
+	weekDay: moment(data.list[day].dt_txt).format('dddd'),
+	description: data.list[day].weather[0].description,
+	temperature: `${Math.floor(data.list[day].main.temp)}°`,
+      }
+    });
+  }
+
   registerDetails(event) {
     event.preventDefault();
-      getDataFor(this.state.cityChosen)
+    getDataFor(this.state.cityChosen)
       .then(data => {
 	this.setState({
-	  citiesDetails: this.state.citiesDetails.concat({city: {
-	    name: data.name,
-	    temperature: `${Math.floor(data.main.temp)}°`,
-	    weather: data.weather[0].description
+	  citiesDetails: this.state.citiesDetails.concat({
+	    city: {
+	      name: data.city.name,
+	      fiveDaysWeatherForecast: this.fiveDays(data)
 	    }
 	  })
 	})
