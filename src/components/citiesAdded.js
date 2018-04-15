@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import City from './city';
 
 export default class CitiesAdded extends React.Component {
 
@@ -12,17 +13,16 @@ export default class CitiesAdded extends React.Component {
   }
 
   render() {
-    const citiesList = this.noCitiesAddedYet() ? (
+    const citiesAdded = this.noCitiesAddedYet() ? (
       <p></p>
     ) : (
       this.props.citiesDetails.map( cityDetails =>
-	<li key={cityDetails.city.name}>
-          {cityDetails.city.name} {cityDetails.city.temperature}
-        </li>
+	<City name={cityDetails.city.name} weatherForecast={cityDetails.city.fiveDaysWeatherForecast} key={cityDetails.city.name} />
       ));
+
     return (
-      <ul>
-        {citiesList}
+      <ul className="citiesAddedList">
+        {citiesAdded}
       </ul>
     )
   }
