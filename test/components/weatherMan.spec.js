@@ -32,7 +32,7 @@ function fiveDaysWeatherForecast(apiWeather, apiTemp) {
 
 function simulateActionOfAdding(cityChosen) {
   const event = {target: {value: cityChosen}};
-  weatherMan.find('.researchCity').simulate('change', event);
+  weatherMan.find('.searchCity').simulate('change', event);
   weatherMan.find('.addCity').simulate('submit');
 }
 
@@ -52,7 +52,7 @@ test('renders a heading with the app name', () => {
 });
 
 test('renders an input element where to search for a city and has an empty value at beginning', () => {
-  const input = weatherMan.find('.researchCity');
+  const input = weatherMan.find('.searchCity');
 
   expect(input.props().value).toEqual("");
 });
@@ -64,13 +64,13 @@ test('renders an input element that acts as an Add button', () => {
 });
 
 test('responds to city change', () => {
-  const registerCitySpy = sinon.spy(WeatherMan.prototype, "registerCity");
+  const registerCitySpy = sinon.spy(WeatherMan.prototype, "registerCitySearched");
   const weatherMan = mount(
     <WeatherMan />
   )
 
   const event = {target: {value: "London"}};
-  weatherMan.find('.researchCity').simulate('change', event);
+  weatherMan.find('.searchCity').simulate('change', event);
 
   expect(registerCitySpy.called).toEqual(true);
 });
@@ -112,4 +112,13 @@ test('a city cannot be added twice', async () => {
 
   expect(citiesAdded.text()).toEqual("Padua 8°");
   expect(citiesAdded.text()).not.toEqual("Padua 8°Padua 8°");
+});
+
+test('clears city field after a search', async () => {
+  simulateActionOfAdding("Padua")
+  await flushPromises
+
+  const cityField = weatherMan.find('.searchCity');
+
+  expect(cityField.text()).toEqual("");
 });

@@ -12,11 +12,11 @@ export default class WeatherMan extends React.Component {
       cityChosen: "",
       citiesDetails: [],
     }
-    this.registerCity = this.registerCity.bind(this);
-    this.registerDetails = this.registerDetails.bind(this);
+    this.registerCitySearched = this.registerCitySearched.bind(this);
+    this.registerCityDetails = this.registerCityDetails.bind(this);
   }
 
-  registerCity(event) {
+  registerCitySearched(event) {
     this.setState({
       cityChosen: event.target.value,
     })
@@ -37,7 +37,13 @@ export default class WeatherMan extends React.Component {
     return !this.state.citiesDetails.map( cityInfo => cityInfo.city.name).includes(city);
   }
 
-  registerDetails(event) {
+  clearCityFieldForNewSearch() {
+    this.setState({
+      cityChosen: "",
+    })
+  }
+
+  registerCityDetails(event) {
     event.preventDefault();
     getDataFor(this.state.cityChosen)
       .then(data => {
@@ -52,15 +58,16 @@ export default class WeatherMan extends React.Component {
 	  });
 	}
       });
+   this.clearCityFieldForNewSearch();
   }
 
   render() {
     return (
       <div>
-	<form onSubmit={this.registerDetails}>
+	<form onSubmit={this.registerCityDetails}>
 	  <label>
 	    <h1>Weather Man</h1>
-	    <input className="researchCity" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
+	    <input className="searchCity" value={this.state.cityChosen} onChange={this.registerCitySearched} autoFocus="autofocus" />
 	  </label>
 	  <input className="addCity" type="submit" value="Add" />
 	</form>
