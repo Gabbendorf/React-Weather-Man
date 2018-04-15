@@ -102,3 +102,14 @@ test('renders name and temperature of multiple cities added in the form of an un
 
   expect(citiesAddedDetails.text()).toEqual("Padua 8°London -2°");
 });
+
+test('a city cannot be added twice', async () => {
+  simulateActionOfAdding("Padua")
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  const citiesAdded = weatherMan.find('ul');
+
+  expect(citiesAdded.text()).toEqual("Padua 8°");
+  expect(citiesAdded.text()).not.toEqual("Padua 8°Padua 8°");
+});

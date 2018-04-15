@@ -33,19 +33,25 @@ export default class WeatherMan extends React.Component {
     });
   }
 
+  notAddedYet(city) {
+    return !this.state.citiesDetails.map( cityInfo => cityInfo.city.name).includes(city);
+  }
+
   registerDetails(event) {
     event.preventDefault();
     getDataFor(this.state.cityChosen)
       .then(data => {
-	this.setState({
-	  citiesDetails: this.state.citiesDetails.concat({
-	    city: {
-	      name: data.city.name,
-	      fiveDaysWeatherForecast: this.fiveDays(data)
-	    }
-	  })
-	})
-      })
+	if (this.notAddedYet(data.city.name)) {
+	  this.setState({
+	    citiesDetails: this.state.citiesDetails.concat({
+	      city: {
+		name: data.city.name,
+		fiveDaysWeatherForecast: this.fiveDays(data)
+	      }
+	    })
+	  });
+	}
+      });
   }
 
   render() {
