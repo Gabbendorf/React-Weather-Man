@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { getDataFor } from '../api';
 import CitiesAdded from './citiesAdded';
+import moment from 'moment';
 
 export default class WeatherMan extends React.Component {
 
@@ -25,7 +26,7 @@ export default class WeatherMan extends React.Component {
     const fiveDays = [0, 7, 14, 21, 28];
     return fiveDays.map( (day) => {
       return {
-	weekDay: data.list[day].dt,
+	weekDay: moment(data.list[day].dt_txt).format('dddd'),
 	description: data.list[day].weather[0].description,
 	temperature: `${Math.floor(data.list[day].main.temp)}°`,
       }
