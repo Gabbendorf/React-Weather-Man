@@ -116,9 +116,21 @@ test('a city cannot be added twice', async () => {
 
 test('clears city field after a search', async () => {
   simulateActionOfAdding("Padua")
-  await flushPromises
+  await flushPromises();
 
   const cityField = weatherMan.find('.searchCity');
 
   expect(cityField.text()).toEqual("");
 });
+
+test('prints an error message if the API responds with a Not Found response', async () => {
+  fetch.mockReject(new Error("not found"))
+  try {
+    await flushPromises();
+  } catch (error) {
+
+    const errorMessage = weatherMan.find('.errorMessage')
+
+    expect(errorMessage.text()).toEqual("city not found");
+  }
+})

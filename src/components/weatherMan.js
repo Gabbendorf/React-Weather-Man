@@ -11,6 +11,7 @@ export default class WeatherMan extends React.Component {
     this.state = {
       cityChosen: "",
       citiesDetails: [],
+      errorMessage: "",
     }
     this.registerCitySearched = this.registerCitySearched.bind(this);
     this.registerCityDetails = this.registerCityDetails.bind(this);
@@ -49,6 +50,7 @@ export default class WeatherMan extends React.Component {
       .then(data => {
 	if (this.notAddedYet(data.city.name)) {
 	  this.setState({
+	    errorMessage: "",
 	    citiesDetails: this.state.citiesDetails.concat({
 	      city: {
 		name: data.city.name,
@@ -57,7 +59,12 @@ export default class WeatherMan extends React.Component {
 	    })
 	  });
 	}
-      });
+      })
+    .catch(err => {
+      this.setState({
+	errorMessage: "city not found"
+      })
+    })
    this.clearCityFieldForNewSearch();
   }
 
@@ -70,6 +77,11 @@ export default class WeatherMan extends React.Component {
 	    <input className="searchCity" value={this.state.cityChosen} onChange={this.registerCitySearched} autoFocus="autofocus" />
 	  </label>
 	  <input className="addCity" type="submit" value="Add" />
+          {this.state.errorMessage != "" &&
+ 	    <div className="errorMessage">
+	      {this.state.errorMessage}
+	    </div>
+          }
 	</form>
         <CitiesAdded citiesDetails={this.state.citiesDetails} />
       </div>
