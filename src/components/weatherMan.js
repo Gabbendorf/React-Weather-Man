@@ -28,7 +28,7 @@ export default class WeatherMan extends React.Component {
       return {
 	weekDay: moment(data.list[day].dt_txt).format('dddd'),
 	description: data.list[day].weather[0].description,
-	temperature: `${Math.floor(data.list[day].main.temp)}°`,
+	temperature: `${Math.floor(data.list[day].main.temp)}°C`,
       }
     });
   }
