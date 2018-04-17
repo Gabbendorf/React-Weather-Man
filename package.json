@@ -45,5 +45,16 @@
     "moment": "^2.22.1",
     "sinon": "^4.5.0",
     "whatwg-fetch": "^2.0.3"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabbendorf/React-Weather-Man.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gabbendorf/React-Weather-Man/issues"
+  },
+  "homepage": "https://github.com/Gabbendorf/React-Weather-Man#readme"
 }
