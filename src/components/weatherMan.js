@@ -39,7 +39,6 @@ export default class WeatherMan extends React.Component {
     return !this.state.citiesDetails.map( cityInfo => cityInfo.city.name).includes(city);
   }
 
-
   registerCityDetails(event, data) {
     this.setState({
       errorMessage: "",
@@ -80,7 +79,7 @@ export default class WeatherMan extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
 	<form onSubmit={this.checkUserInput}>
 	  <label>
 	    <h1>Weather Man</h1>
