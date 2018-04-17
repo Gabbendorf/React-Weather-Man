@@ -54,14 +54,14 @@ li {
   font-size: 20px;
   display: inline;
   position: relative;
-  left: 40px;
+  left: 30px;
 }
 
 .currentTemperature {
   font-size: 35px;
   display: inline;
   position: absolute;
-  left: 297px;
+  left: 308px;
   bottom: -29px;
 }
 
