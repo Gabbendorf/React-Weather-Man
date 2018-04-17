@@ -9,7 +9,11 @@ export default class Day extends React.Component {
 
   render() {
     return (
-      <li>{this.props.weekDay} {this.props.description} {this.props.temperature}</li>
+      <li>
+        <span className="weekDay">{this.props.weekDay}</span>
+        <span className="weatherDescriptionForDay">{this.props.description}</span>
+        <span className="temperatureForDay">{this.props.temperature}</span>
+      </li>
     )
   }
 }

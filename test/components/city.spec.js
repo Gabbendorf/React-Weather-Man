@@ -42,8 +42,8 @@ test('renders weather and temperature for all days as unordered list if user cli
   city.find('li').simulate('click');
   const moreDetails = city.find('.fullDetails');
 
-  expect(moreDetails.find('li').at(0).text()).toEqual("Sunday sunny 24°");
-  expect(moreDetails.find('li').at(1).text()).toEqual("Monday less sunny 22°");
+  expect(moreDetails.find('li').at(0).text()).toEqual("Sundaysunny24°");
+  expect(moreDetails.find('li').at(1).text()).toEqual("Mondayless sunny22°");
 });
 
 test('reverts to rendering just name and temperature if user clicks again on it', () => {

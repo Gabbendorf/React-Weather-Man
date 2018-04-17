@@ -10,6 +10,7 @@ test('renders all details for the day', () => {
 
   const details = day.find('li')
 
-
-  expect(details.text()).toEqual("Sunday sunny 8°");
+  expect(details.find('.weekDay').text()).toEqual("Sunday");
+  expect(details.find('.weatherDescriptionForDay').text()).toEqual("sunny");
+  expect(details.find('.temperatureForDay').text()).toEqual("8°");
 });
