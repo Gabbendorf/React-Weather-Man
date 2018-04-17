@@ -105,6 +105,9 @@ test('renders name and temperature of multiple cities added in the form of an un
 
 test('a city cannot be added twice', async () => {
   simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  fetch.mockResponse(JSON.stringify(cityDataMocked("Padua", "sunny", "8.5")), {status: 200});
   simulateActionOfAdding("Padua")
   await flushPromises();
 
@@ -112,6 +115,19 @@ test('a city cannot be added twice', async () => {
 
   expect(citiesAdded.text()).toEqual("Padua 8°C");
   expect(citiesAdded.text()).not.toEqual("Padua 8°CPadua 8C°");
+});
+
+test('prints an error message if a city had already been added', async () => {
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  fetch.mockResponse(JSON.stringify(cityDataMocked("Padua", "sunny", "8.5")), {status: 200});
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  const form = weatherMan.find('div').at(0);
+
+  expect(form.text()).toContain("city already added");
 });
 
 test('clears city field after a search', async () => {
