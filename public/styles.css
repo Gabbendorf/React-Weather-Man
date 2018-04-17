@@ -47,21 +47,22 @@ li {
   border-top-style: solid;
   position: relative;
   right: 20px;
-  top: 30px;
+  top: 25px;
 }
 
 .cityName {
   font-size: 20px;
   display: inline;
   position: relative;
-  left: 55px;
+  left: 40px;
 }
 
 .currentTemperature {
   font-size: 35px;
   display: inline;
-  position: relative;
-  left: 185px;
+  position: absolute;
+  left: 297px;
+  bottom: -29px;
 }
 
 .fiveDaysWeatherForecast {
