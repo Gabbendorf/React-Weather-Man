@@ -39,7 +39,6 @@ export default class WeatherMan extends React.Component {
     return !this.state.citiesDetails.map( cityInfo => cityInfo.city.name).includes(city);
   }
 
-
   registerCityDetails(event, data) {
     this.setState({
       errorMessage: "",
@@ -80,13 +79,13 @@ export default class WeatherMan extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
 	<form onSubmit={this.checkUserInput}>
 	  <label>
 	    <h1>Weather Man</h1>
 	    <input className="searchCity" value={this.state.citySearched} onChange={this.registerCitySearched} autoFocus="autofocus" />
 	  </label>
-	  <input className="addCity" type="submit" value="Add" />
+	  <input className="addCityButton" type="submit" value="Add City" />
           {this.state.errorMessage != "" &&
  	    <div className="errorMessage">
 	      {this.state.errorMessage}

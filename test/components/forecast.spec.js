@@ -24,6 +24,6 @@ test('renders week day, weather description and temperature for all days', () =>
   const sundayDetails = forecast.find('li').at(0);
   const mondayDetails = forecast.find('li').at(1);
 
-  expect(sundayDetails.text()).toEqual("Sunday sunny 24°");
-  expect(mondayDetails.text()).toEqual("Monday less sunny 22°");
+  expect(sundayDetails.text()).toEqual("Sundaysunny24°");
+  expect(mondayDetails.text()).toEqual("Mondayless sunny22°");
 });

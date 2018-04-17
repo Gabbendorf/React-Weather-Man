@@ -33,7 +33,7 @@ function fiveDaysWeatherForecast(apiWeather, apiTemp) {
 function simulateActionOfAdding(cityChosen) {
   const event = {target: {value: cityChosen}};
   weatherMan.find('.searchCity').simulate('change', event);
-  weatherMan.find('.addCity').simulate('submit');
+  weatherMan.find('.addCityButton').simulate('submit');
 }
 
 beforeEach(() => {
@@ -58,9 +58,9 @@ test('renders an input element where to search for a city and has an empty value
 });
 
 test('renders an input element that acts as an Add button', () => {
-  const input = weatherMan.find('.addCity');
+  const input = weatherMan.find('.addCityButton');
 
-  expect(input.props().value).toEqual("Add");
+  expect(input.props().value).toEqual("Add City");
 });
 
 test('responds to city change', () => {
@@ -87,7 +87,7 @@ test('gets data from API for a city chosen and renders its name and temperature 
 
   const citiesAddedDetails = weatherMan.find('ul');
 
-  expect(citiesAddedDetails.text()).toEqual("Padua 8°C");
+  expect(citiesAddedDetails.text()).toEqual("Padua8°C");
 });
 
 test('renders name and temperature of multiple cities added in the form of an unordered list', async () => {
@@ -100,7 +100,7 @@ test('renders name and temperature of multiple cities added in the form of an un
 
   const citiesAddedDetails = weatherMan.find('ul');
 
-  expect(citiesAddedDetails.text()).toEqual("Padua 8°CLondon -2°C");
+  expect(citiesAddedDetails.text()).toEqual("Padua8°CLondon-2°C");
 });
 
 test('a city cannot be added twice', async () => {
@@ -113,8 +113,8 @@ test('a city cannot be added twice', async () => {
 
   const citiesAdded = weatherMan.find('ul');
 
-  expect(citiesAdded.text()).toEqual("Padua 8°C");
-  expect(citiesAdded.text()).not.toEqual("Padua 8°CPadua 8C°");
+  expect(citiesAdded.text()).toEqual("Padua8°C");
+  expect(citiesAdded.text()).not.toEqual("Padua8°CPadua8C°");
 });
 
 test('prints an error message if a city had already been added', async () => {
