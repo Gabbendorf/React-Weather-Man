@@ -93,3 +93,11 @@ li {
   padding-top: 5px;
   color: red;
 }
+
+.addCityButton {
+  box-shadow: 5px 4px 11px grey;
+}
+
+.addCityButton:hover {
+  cursor: pointer;
+}

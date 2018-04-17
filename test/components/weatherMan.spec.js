@@ -33,7 +33,7 @@ function fiveDaysWeatherForecast(apiWeather, apiTemp) {
 function simulateActionOfAdding(cityChosen) {
   const event = {target: {value: cityChosen}};
   weatherMan.find('.searchCity').simulate('change', event);
-  weatherMan.find('.addCity').simulate('submit');
+  weatherMan.find('.addCityButton').simulate('submit');
 }
 
 beforeEach(() => {
@@ -58,9 +58,9 @@ test('renders an input element where to search for a city and has an empty value
 });
 
 test('renders an input element that acts as an Add button', () => {
-  const input = weatherMan.find('.addCity');
+  const input = weatherMan.find('.addCityButton');
 
-  expect(input.props().value).toEqual("Add");
+  expect(input.props().value).toEqual("Add City");
 });
 
 test('responds to city change', () => {
