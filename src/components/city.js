@@ -21,11 +21,13 @@ export default class City extends React.Component {
 
   fiveDaysDetails() {
     return (
-      <div className="fiveDaysDetails">
-        <h2 className="cityName">{this.props.name}</h2>
-        <h1 className="cityTemperature">
-          {this.state.currentTemperature}
+      <div className="fullDetails">
+        <h1 className="cityNameFullDetails">
+          {this.props.name}
         </h1>
+        <p className="currentTemperatureFullDetails">
+          {this.state.currentTemperature}
+        </p>
         <Forecast fiveDaysDetails={this.props.weatherForecast} />
       </div>
     );
@@ -37,7 +39,12 @@ export default class City extends React.Component {
 	this.fiveDaysDetails()
       ) : (
 	<div className="onlyTodayDetails">
-  	  {this.props.name} {this.state.currentTemperature}
+          <h1 className="cityName">
+            {this.props.name}
+          </h1>
+          <p className="currentTemperature">
+            {this.state.currentTemperature}
+          </p>
         </div>
       )
     );

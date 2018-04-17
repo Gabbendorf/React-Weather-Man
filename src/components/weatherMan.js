@@ -9,16 +9,18 @@ export default class WeatherMan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cityChosen: "",
+      citySearched: "",
       citiesDetails: [],
+      errorMessage: "",
     }
-    this.registerCity = this.registerCity.bind(this);
-    this.registerDetails = this.registerDetails.bind(this);
+    this.registerCitySearched = this.registerCitySearched.bind(this);
+    this.registerCityDetails = this.registerCityDetails.bind(this);
+    this.checkUserInput = this.checkUserInput.bind(this);
   }
 
-  registerCity(event) {
+  registerCitySearched(event) {
     this.setState({
-      cityChosen: event.target.value,
+      citySearched: event.target.value,
     })
   }
 
@@ -28,35 +30,67 @@ export default class WeatherMan extends React.Component {
       return {
 	weekDay: moment(data.list[day].dt_txt).format('dddd'),
 	description: data.list[day].weather[0].description,
-	temperature: `${Math.floor(data.list[day].main.temp)}°`,
+	temperature: `${Math.floor(data.list[day].main.temp)}°C`,
       }
     });
   }
 
-  registerDetails(event) {
+  notAddedYet(city) {
+    return !this.state.citiesDetails.map( cityInfo => cityInfo.city.name).includes(city);
+  }
+
+  registerCityDetails(event, data) {
+    this.setState({
+      errorMessage: "",
+      citiesDetails: this.state.citiesDetails.concat({
+	city: {
+	  name: data.city.name,
+	  fiveDaysWeatherForecast: this.fiveDays(data)
+	}
+      })
+    });
+  }
+
+  clearCityFieldForNewSearch() {
+    this.setState({
+      citySearched: "",
+    })
+  }
+
+  checkUserInput(event) {
     event.preventDefault();
-    getDataFor(this.state.cityChosen)
+    getDataFor(this.state.citySearched)
       .then(data => {
-	this.setState({
-	  citiesDetails: this.state.citiesDetails.concat({
-	    city: {
-	      name: data.city.name,
-	      fiveDaysWeatherForecast: this.fiveDays(data)
-	    }
+	if (this.notAddedYet(data.city.name)) {
+	  this.registerCityDetails(event, data);
+	} else {
+	  this.setState({
+	    errorMessage: "city already added",
 	  })
+	}
+      })
+      .catch(err => {
+	this.setState({
+	  errorMessage: "city not found",
 	})
       })
+    this.clearCityFieldForNewSearch();
   }
 
   render() {
     return (
-      <div>
-	<form onSubmit={this.registerDetails}>
+      <div className="container">
+	<form onSubmit={this.checkUserInput}>
 	  <label>
 	    <h1>Weather Man</h1>
-	    <input className="researchCity" value={this.state.cityChosen} onChange={this.registerCity} autoFocus="autofocus" />
+	    <input className="searchCity" value={this.state.citySearched} onChange={this.registerCitySearched} autoFocus="autofocus" />
 	  </label>
-	  <input className="addCity" type="submit" value="Add" />
+	  <input className="addCityButton" type="submit" value="Add City" />
+          {this.state.errorMessage != "" &&
+ 	    <div className="errorMessage">
+	      {this.state.errorMessage}
+	    </div>
+          }
 	</form>
         <CitiesAdded citiesDetails={this.state.citiesDetails} />
       </div>

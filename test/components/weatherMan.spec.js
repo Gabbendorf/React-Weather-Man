@@ -32,8 +32,8 @@ function fiveDaysWeatherForecast(apiWeather, apiTemp) {
 
 function simulateActionOfAdding(cityChosen) {
   const event = {target: {value: cityChosen}};
-  weatherMan.find('.researchCity').simulate('change', event);
-  weatherMan.find('.addCity').simulate('submit');
+  weatherMan.find('.searchCity').simulate('change', event);
+  weatherMan.find('.addCityButton').simulate('submit');
 }
 
 beforeEach(() => {
@@ -52,25 +52,25 @@ test('renders a heading with the app name', () => {
 });
 
 test('renders an input element where to search for a city and has an empty value at beginning', () => {
-  const input = weatherMan.find('.researchCity');
+  const input = weatherMan.find('.searchCity');
 
   expect(input.props().value).toEqual("");
 });
 
 test('renders an input element that acts as an Add button', () => {
-  const input = weatherMan.find('.addCity');
+  const input = weatherMan.find('.addCityButton');
 
-  expect(input.props().value).toEqual("Add");
+  expect(input.props().value).toEqual("Add City");
 });
 
 test('responds to city change', () => {
-  const registerCitySpy = sinon.spy(WeatherMan.prototype, "registerCity");
+  const registerCitySpy = sinon.spy(WeatherMan.prototype, "registerCitySearched");
   const weatherMan = mount(
     <WeatherMan />
   )
 
   const event = {target: {value: "London"}};
-  weatherMan.find('.researchCity').simulate('change', event);
+  weatherMan.find('.searchCity').simulate('change', event);
 
   expect(registerCitySpy.called).toEqual(true);
 });
@@ -87,7 +87,7 @@ test('gets data from API for a city chosen and renders its name and temperature 
 
   const citiesAddedDetails = weatherMan.find('ul');
 
-  expect(citiesAddedDetails.text()).toEqual("Padua 8°");
+  expect(citiesAddedDetails.text()).toEqual("Padua8°C");
 });
 
 test('renders name and temperature of multiple cities added in the form of an unordered list', async () => {
@@ -100,5 +100,53 @@ test('renders name and temperature of multiple cities added in the form of an un
 
   const citiesAddedDetails = weatherMan.find('ul');
 
-  expect(citiesAddedDetails.text()).toEqual("Padua 8°London -2°");
+  expect(citiesAddedDetails.text()).toEqual("Padua8°CLondon-2°C");
 });
+
+test('a city cannot be added twice', async () => {
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  fetch.mockResponse(JSON.stringify(cityDataMocked("Padua", "sunny", "8.5")), {status: 200});
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  const citiesAdded = weatherMan.find('ul');
+
+  expect(citiesAdded.text()).toEqual("Padua8°C");
+  expect(citiesAdded.text()).not.toEqual("Padua8°CPadua8C°");
+});
+
+test('prints an error message if a city had already been added', async () => {
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  fetch.mockResponse(JSON.stringify(cityDataMocked("Padua", "sunny", "8.5")), {status: 200});
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  const form = weatherMan.find('div').at(0);
+
+  expect(form.text()).toContain("city already added");
+});
+
+test('clears city field after a search', async () => {
+  simulateActionOfAdding("Padua")
+  await flushPromises();
+
+  const cityField = weatherMan.find('.searchCity');
+
+  expect(cityField.text()).toEqual("");
+});
+
+test('prints an error message if the API responds with a Not Found response', async () => {
+  fetch.mockReject(new Error("not found"))
+  try {
+    await flushPromises();
+  } catch (error) {
+
+    const errorMessage = weatherMan.find('.errorMessage')
+
+    expect(errorMessage.text()).toEqual("city not found");
+  }
+})

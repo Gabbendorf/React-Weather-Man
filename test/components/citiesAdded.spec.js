@@ -47,6 +47,6 @@ test('renders unordered list of cities with their name and temperature', () => {
   const firstCityDetails = citiesAdded.find('.citiesAddedList').find('li').at(0);
   const secondCityDetails = citiesAdded.find('.citiesAddedList').find('li').at(1);
 
-  expect(firstCityDetails.text()).toEqual("Rome 8°");
-  expect(secondCityDetails.text()).toEqual("Paris 3°");
+  expect(firstCityDetails.text()).toEqual("Rome8°");
+  expect(secondCityDetails.text()).toEqual("Paris3°");
 });
