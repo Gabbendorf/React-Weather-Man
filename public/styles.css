@@ -1,0 +1,71 @@
+.container {
+  margin: 0 auto;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 40px;
+  text-align: center;
+  width: 470px;
+  min-height: 795px;
+  height: auto !important;
+  color: black;
+  font-family: HelveticaNeue-Thin;
+}
+
+li {
+  list-style-type: none;
+}
+
+.citiesAddedList {
+  text-align: justify;
+}
+
+.fullDetails {
+  padding-bottom: 15px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  position: relative;
+  right: 20px;
+  text-align: center;
+  top: 20px;
+}
+
+.cityNameFullDetails {
+  font-size: 18px;
+  position: relative;
+  top: 5px;
+}
+
+.currentTemperatureFullDetails {
+  font-size: 40px;
+  position: relative;
+  bottom: 20px;
+}
+
+.onlyTodayDetails {
+  padding: 15px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  position: relative;
+  right: 20px;
+  top: 20px;
+}
+
+.cityName {
+  font-size: 20px;
+  display: inline;
+  position: relative;
+  left: 55px;
+}
+
+.currentTemperature {
+  font-size: 35px;
+  display: inline;
+  position: relative;
+  left: 185px;
+}
+
+.fiveDaysWeatherForecast {
+  position: relative;
+  bottom: 35px;
+  font-size: 15px;
+}
