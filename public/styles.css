@@ -101,3 +101,11 @@ li {
 .addCityButton:hover {
   cursor: pointer;
 }
+
+.fullDetails:hover {
+  cursor: pointer;
+}
+
+.onlyTodayDetails:hover {
+  cursor: pointer;
+}
