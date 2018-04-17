@@ -84,3 +84,12 @@ li {
   position: absolute;
   right: 33px;
 }
+
+.errorMessage {
+  position: relative;
+  right: 42px;
+  font-size: 13px;
+  font-style: italic;
+  padding-top: 5px;
+  color: red;
+}
