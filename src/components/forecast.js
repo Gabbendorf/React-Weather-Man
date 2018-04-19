@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Day from './day';
+import {Day} from './day';
 
 export default class Forecast extends React.Component {
 
