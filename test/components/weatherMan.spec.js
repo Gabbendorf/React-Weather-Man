@@ -1,6 +1,6 @@
 import React from "react"
 import fetchMock from "fetch-mock"
-import WeatherMan from "../../src/components/weatherMan"
+import WeatherMan from "../../src/components/WeatherMan"
 import sinon from "sinon"
 import { flushPromises } from "../../src/api"
 

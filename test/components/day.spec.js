@@ -1,5 +1,5 @@
 import React from "react"
-import { Day, weekDays } from "../../src/components/day"
+import { Day, weekDays } from "../../src/components/Day"
 
 test("renders without crashing", () => {
   mount(<Day weekDay="Sunday" description="sunny" temperature="8°" />)

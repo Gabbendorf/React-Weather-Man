@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Forecast from "./forecast"
+import Forecast from "./Forecast"
 
 export default class City extends React.Component {
   constructor(props) {

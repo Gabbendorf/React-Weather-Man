@@ -1,5 +1,5 @@
 import React from "react"
-import City from "../../src/components/city"
+import City from "../../src/components/City"
 
 let city
 

@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import City from "./city"
+import City from "./City"
 
 export default class CitiesAdded extends React.Component {
   constructor(props) {
