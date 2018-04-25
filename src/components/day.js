@@ -10,26 +10,18 @@ export const weekDays = [
   "Saturday"
 ]
 
-export class Day extends React.Component {
-  constructor(props) {
-    super(props)
+export function Day(props) {
+  const currentWeekDay = weekDays[new Date().getDay()]
+  let weekDay = props.weekDay
+  if (weekDay === currentWeekDay) {
+    weekDay += ", today"
   }
 
-  render() {
-    const currentWeekDay = weekDays[new Date().getDay()]
-    let weekDay = this.props.weekDay
-    if (weekDay === currentWeekDay) {
-      weekDay += ", today"
-    }
-
-    return (
-      <li>
-        <span className="week-day">{weekDay}</span>
-        <span className="weather-description-for-day">
-          {this.props.description}
-        </span>
-        <span className="temperature-for-day">{this.props.temperature}</span>
-      </li>
-    )
-  }
+  return (
+    <li>
+      <span className="week-day">{weekDay}</span>
+      <span className="weather-description-for-day">{props.description}</span>
+      <span className="temperature-for-day">{props.temperature}</span>
+    </li>
+  )
 }

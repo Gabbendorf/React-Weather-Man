@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { getDataFor } from "../api"
-import CitiesAdded from "./CitiesAdded"
+import { CitiesAdded } from "./CitiesAdded"
 import moment from "moment"
 
 export default class WeatherMan extends React.Component {

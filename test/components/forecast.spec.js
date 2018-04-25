@@ -1,5 +1,5 @@
 import React from "react"
-import Forecast from "../../src/components/Forecast"
+import { Forecast } from "../../src/components/Forecast"
 
 const fiveDaysDetails = [
   {
