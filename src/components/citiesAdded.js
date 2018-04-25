@@ -1,29 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import City from './city';
+import React from "react"
+import ReactDOM from "react-dom"
+import City from "./city"
 
 export default class CitiesAdded extends React.Component {
-
   constructor(props) {
     super(props)
   }
 
   noCitiesAddedYet() {
-    return this.props.citiesDetails.length === 0;
+    return this.props.citiesDetails.length === 0
   }
 
   render() {
     const citiesAdded = this.noCitiesAddedYet() ? (
-      <p></p>
+      <p />
     ) : (
-      this.props.citiesDetails.map( cityDetails =>
-	<City name={cityDetails.city.name} weatherForecast={cityDetails.city.fiveDaysWeatherForecast} key={cityDetails.city.name} />
-      ));
-
-    return (
-      <ul className="citiesAddedList">
-        {citiesAdded}
-      </ul>
+      this.props.citiesDetails.map(cityDetails => (
+        <City
+          name={cityDetails.city.name}
+          weatherForecast={cityDetails.city.fiveDaysWeatherForecast}
+          key={cityDetails.city.name}
+        />
+      ))
     )
+
+    return <ul className="citiesAddedList">{citiesAdded}</ul>
   }
 }
