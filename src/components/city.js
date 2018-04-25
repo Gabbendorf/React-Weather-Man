@@ -31,9 +31,10 @@ export default class City extends React.Component {
   }
 
   detailsToShow() {
-    return this.state.clicked ? (
-      this.fiveDaysDetails()
-    ) : (
+    if (this.state.clicked) {
+      return this.fiveDaysDetails()
+    }
+    return (
       <div className="only-today-details">
         <h1 className="city-name">{this.props.name}</h1>
         <p className="current-temperature">{this.state.currentTemperature}</p>
