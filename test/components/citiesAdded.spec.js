@@ -47,11 +47,11 @@ test("renders an empty paragraph if it does not receive details for a city to ad
 
 test("renders unordered list of cities with their name and temperature", () => {
   const firstCityDetails = citiesAdded
-    .find(".citiesAddedList")
+    .find(".cities-added-list")
     .find("li")
     .at(0)
   const secondCityDetails = citiesAdded
-    .find(".citiesAddedList")
+    .find(".cities-added-list")
     .find("li")
     .at(1)
 

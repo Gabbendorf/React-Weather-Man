@@ -24,11 +24,11 @@ export class Day extends React.Component {
 
     return (
       <li>
-        <span className="weekDay">{weekDay}</span>
-        <span className="weatherDescriptionForDay">
+        <span className="week-day">{weekDay}</span>
+        <span className="weather-description-for-day">
           {this.props.description}
         </span>
-        <span className="temperatureForDay">{this.props.temperature}</span>
+        <span className="temperature-for-day">{this.props.temperature}</span>
       </li>
     )
   }

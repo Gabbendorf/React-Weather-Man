@@ -30,8 +30,8 @@ function fiveDaysWeatherForecast(apiWeather, apiTemp) {
 
 function simulateActionOfAdding(cityChosen) {
   const event = { target: { value: cityChosen } }
-  weatherMan.find(".searchCity").simulate("change", event)
-  weatherMan.find(".addCityButton").simulate("submit")
+  weatherMan.find(".search-city").simulate("change", event)
+  weatherMan.find(".add-city-button").simulate("submit")
 }
 
 beforeEach(() => {
@@ -52,13 +52,13 @@ test("renders a heading with the app name", () => {
 })
 
 test("renders an input element where to search for a city and has an empty value at beginning", () => {
-  const input = weatherMan.find(".searchCity")
+  const input = weatherMan.find(".search-city")
 
   expect(input.props().value).toEqual("")
 })
 
 test("renders an input element that acts as an Add button", () => {
-  const input = weatherMan.find(".addCityButton")
+  const input = weatherMan.find(".add-city-button")
 
   expect(input.props().value).toEqual("Add City")
 })
@@ -71,7 +71,7 @@ test("responds to city change", () => {
   const weatherMan = mount(<WeatherMan />)
 
   const event = { target: { value: "London" } }
-  weatherMan.find(".searchCity").simulate("change", event)
+  weatherMan.find(".search-city").simulate("change", event)
 
   expect(registerCitySpy.called).toEqual(true)
 })
@@ -141,7 +141,7 @@ test("clears city field after a search", async () => {
   simulateActionOfAdding("Padua")
   await flushPromises()
 
-  const cityField = weatherMan.find(".searchCity")
+  const cityField = weatherMan.find(".search-city")
 
   expect(cityField.text()).toEqual("")
 })

@@ -12,9 +12,9 @@ test("renders all details for the day", () => {
 
   const details = day.find("li")
 
-  expect(details.find(".weekDay").text()).toEqual("Sunday")
-  expect(details.find(".weatherDescriptionForDay").text()).toEqual("sunny")
-  expect(details.find(".temperatureForDay").text()).toEqual("8°")
+  expect(details.find(".week-day").text()).toEqual("Sunday")
+  expect(details.find(".weather-description-for-day").text()).toEqual("sunny")
+  expect(details.find(".temperature-for-day").text()).toEqual("8°")
 })
 
 test("it specifies it is today if week day is current week day", () => {
@@ -23,7 +23,7 @@ test("it specifies it is today if week day is current week day", () => {
     <Day weekDay={currentWeekDay} description="sunny" temperature="8°" />
   )
 
-  const todaysDetails = day.find("li").find(".weekDay")
+  const todaysDetails = day.find("li").find(".week-day")
 
   expect(todaysDetails.text()).toEqual(currentWeekDay + ", today")
 })

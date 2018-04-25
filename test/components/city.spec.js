@@ -25,14 +25,14 @@ test("renders without crashing", () => {
 })
 
 test("renders its name and temperature if user did not click on it", () => {
-  const details = city.find(".onlyTodayDetails")
+  const details = city.find(".only-today-details")
 
   expect(details.text()).toEqual("Padua24°")
 })
 
 test("renders its name as heading and temperature as paragraph if user clicks on it", () => {
   city.find("li").simulate("click")
-  const moreDetails = city.find(".fullDetails")
+  const moreDetails = city.find(".full-details")
 
   expect(moreDetails.find("h1").text()).toEqual("Padua")
   expect(moreDetails.find("p").text()).toEqual("24°")
@@ -40,7 +40,7 @@ test("renders its name as heading and temperature as paragraph if user clicks on
 
 test("renders weather and temperature for all days as unordered list if user clicks on it", () => {
   city.find("li").simulate("click")
-  const moreDetails = city.find(".fullDetails")
+  const moreDetails = city.find(".full-details")
 
   expect(
     moreDetails
@@ -57,8 +57,8 @@ test("renders weather and temperature for all days as unordered list if user cli
 })
 
 test("reverts to rendering just name and temperature if user clicks again on it", () => {
-  city.find(".onlyTodayDetails").simulate("click")
-  city.find(".fullDetails").simulate("click")
+  city.find(".only-today-details").simulate("click")
+  city.find(".full-details").simulate("click")
 
   const details = city.find("li")
 

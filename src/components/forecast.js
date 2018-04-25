@@ -17,6 +17,6 @@ export default class Forecast extends React.Component {
       />
     ))
 
-    return <ul className="fiveDaysWeatherForecast">{allForecast}</ul>
+    return <ul className="five-days-weather-forecast">{allForecast}</ul>
   }
 }

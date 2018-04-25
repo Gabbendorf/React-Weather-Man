@@ -24,6 +24,6 @@ export default class CitiesAdded extends React.Component {
       ))
     )
 
-    return <ul className="citiesAddedList">{citiesAdded}</ul>
+    return <ul className="cities-added-list">{citiesAdded}</ul>
   }
 }

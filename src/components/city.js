@@ -20,9 +20,9 @@ export default class City extends React.Component {
 
   fiveDaysDetails() {
     return (
-      <div className="fullDetails">
-        <h1 className="cityNameFullDetails">{this.props.name}</h1>
-        <p className="currentTemperatureFullDetails">
+      <div className="full-details">
+        <h1 className="city-name-full-details">{this.props.name}</h1>
+        <p className="current-temperature-full-details">
           {this.state.currentTemperature}
         </p>
         <Forecast fiveDaysDetails={this.props.weatherForecast} />
@@ -34,9 +34,9 @@ export default class City extends React.Component {
     return this.state.clicked ? (
       this.fiveDaysDetails()
     ) : (
-      <div className="onlyTodayDetails">
-        <h1 className="cityName">{this.props.name}</h1>
-        <p className="currentTemperature">{this.state.currentTemperature}</p>
+      <div className="only-today-details">
+        <h1 className="city-name">{this.props.name}</h1>
+        <p className="current-temperature">{this.state.currentTemperature}</p>
       </div>
     )
   }

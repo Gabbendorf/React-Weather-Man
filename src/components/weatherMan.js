@@ -85,15 +85,15 @@ export default class WeatherMan extends React.Component {
           <label>
             <h1>Weather Man</h1>
             <input
-              className="searchCity"
+              className="search-city"
               value={this.state.citySearched}
               onChange={this.registerCitySearched}
               autoFocus="autofocus"
             />
           </label>
-          <input className="addCityButton" type="submit" value="Add City" />
+          <input className="add-city-button" type="submit" value="Add City" />
           {this.state.errorMessage != "" && (
-            <div className="errorMessage">{this.state.errorMessage}</div>
+            <div className="error-message">{this.state.errorMessage}</div>
           )}
         </form>
         <CitiesAdded citiesDetails={this.state.citiesDetails} />
