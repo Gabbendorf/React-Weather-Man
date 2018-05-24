@@ -15,33 +15,33 @@ li {
   list-style-type: none;
 }
 
-.citiesAddedList {
+.cities-added-list {
   text-align: justify;
 }
 
-.fullDetails {
+.full-details {
   padding-bottom: 15px;
   border-top-width: 1px;
   border-top-style: solid;
   position: relative;
   right: 20px;
   text-align: center;
-  top: 30px;
+  top: 25px;
 }
 
-.cityNameFullDetails {
+.city-name-full-details {
   font-size: 18px;
   position: relative;
   top: 5px;
 }
 
-.currentTemperatureFullDetails {
+.current-temperature-full-details {
   font-size: 40px;
   position: relative;
   bottom: 20px;
 }
 
-.onlyTodayDetails {
+.only-today-details {
   padding: 15px;
   border-top-width: 1px;
   border-top-style: solid;
@@ -50,14 +50,14 @@ li {
   top: 25px;
 }
 
-.cityName {
+.city-name {
   font-size: 20px;
   display: inline;
   position: relative;
   left: 30px;
 }
 
-.currentTemperature {
+.current-temperature {
   font-size: 35px;
   display: inline;
   position: absolute;
@@ -65,28 +65,28 @@ li {
   bottom: -29px;
 }
 
-.fiveDaysWeatherForecast {
+.five-days-weather-forecast {
   position: relative;
   bottom: 25px;
   font-size: 15px;
 }
 
-.weekDay {
+.week-day {
   position: absolute;
   left: 30px;
 }
 
-.weatherDescriptionForDay {
+.weather-description-for-day {
   position: relative;
   right: 15px;
 }
 
-.temperatureForDay {
+.temperature-for-day {
   position: absolute;
   right: 33px;
 }
 
-.errorMessage {
+.error-message {
   position: relative;
   right: 42px;
   font-size: 13px;
@@ -95,18 +95,18 @@ li {
   color: red;
 }
 
-.addCityButton {
+.add-city-button {
   box-shadow: 5px 4px 11px grey;
 }
 
-.addCityButton:hover {
+.add-city-button:hover {
   cursor: pointer;
 }
 
-.fullDetails:hover {
+.full-details:hover {
   cursor: pointer;
 }
 
-.onlyTodayDetails:hover {
+.only-today-details:hover {
   cursor: pointer;
 }

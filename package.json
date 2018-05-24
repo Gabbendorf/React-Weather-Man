@@ -2,13 +2,18 @@
   "name": "weather_man",
   "version": "1.0.0",
   "description": "A Weather Manager that renders the weather of a specific city",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "webpack",
     "watch": "webpack-dev-server --content-base dist",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "prettier": "prettier --no-color --write '{src,test}/**/*.js'"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false
   },
   "jest": {
     "automock": false,
@@ -32,6 +37,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
     "jest": "^22.4.3",
+    "prettier": "^1.12.1",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
